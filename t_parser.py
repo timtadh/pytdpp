@@ -95,4 +95,5 @@ if __name__ == '__main__':
         assert eval(expr) == p
         print p
     #print parser.parse('7*4*3')
-    test('9*4/(4*2+4)*6/8')
+    #test('9*4/(4*2+4)*6/8')
+    test('(2+3)*4')

@@ -6,9 +6,9 @@
 
 import functools, types
 import analysis, tdpp
-from gram_parser import parse as gram_parse
+from rec_parser import parse as gram_parse
 from analysis import first, follow, build_table
-from gram_parser import EmptyString, EoS, Terminal, NonTerminal
+from rec_parser import EmptyString, EoS, Terminal, NonTerminal
 
 class BaseParser(object):
 

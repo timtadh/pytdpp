@@ -5,7 +5,7 @@
 #For licensing see the LICENSE file in the top level directory.
 
 import functools, itertools
-from gram_parser import parse, EmptyString, EoS,  NonTerminal, Terminal
+from rec_parser import parse, EmptyString, EoS,  NonTerminal, Terminal
 
 def first(productions, sym):
     if not hasattr(productions, '__first_cache'):

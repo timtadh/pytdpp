@@ -41,6 +41,8 @@ def Lex(inpt):
         for c, x in enumerate(cline):
             if x.isalpha():
                 chars.append(x)
+            elif chars and x == "'":
+                chars.append(x)
             elif chars and x.isdigit():
                 chars.append(x)
             elif chars:
@@ -50,7 +52,7 @@ def Lex(inpt):
             if x == ' ': continue
             elif x == ';': yield token(END, x)
             elif x == ':': yield token(COLON, x)
-            elif not (x.isalpha() or (chars and x.isdigit())):
+            elif not (x.isalpha() or (chars and x == "'") or (chars and x.isdigit())):
                 m = 'Unexpected character! %s on line %i character %i' % (x, line+1, c+1)
                 raise SyntaxError, m
     if chars:

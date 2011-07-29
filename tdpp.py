@@ -6,7 +6,7 @@
 
 import functools
 from analysis import first, follow, build_table
-from gram_parser import EmptyString, EoS, Terminal
+from rec_parser import EmptyString, EoS, Terminal
 
 def parse(tokens, productions):
     def next():

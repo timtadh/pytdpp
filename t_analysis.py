@@ -6,7 +6,6 @@
 
 from gram_parser import parse, EmptyString, EoS,  NonTerminal, Terminal
 import analysis
-import tdpp
 
 import functools, nose
 from ply import lex
@@ -131,15 +130,3 @@ def t_check():
 
 def t_build():
     print analysis.build_table(productions, True)
-
-def t_parse_print():
-    lexer = Lexer()
-    lexer.input('6+7*4+3*2*(4+3)')
-    for c, v in list(tdpp.parse((t for t in lexer), productions)):
-        print "%s:%s" % (c, v)
-
-def t_processor():
-    raise nose.SkipTest
-    lexer = Lexer()
-    lexer.input('6+7*4+3*2*(4+3)')
-    print tdpp.processor(tdpp.parse((t for t in lexer), productions))

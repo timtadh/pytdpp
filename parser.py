@@ -51,7 +51,6 @@ class BaseParser(object):
         self.lexer = lexer
         self.functions = dict()
         self._init(Start)
-        print self.productions
         return self
 
     def _init(self, Start):

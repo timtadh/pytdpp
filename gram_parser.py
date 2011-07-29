@@ -5,8 +5,7 @@
 #For licensing see the LICENSE file in the top level directory.
 
 import functools
-import rec_lexer as lx
-from rec_lexer import Lex
+import gram_lexer as lx
 from collections import MutableMapping
 
 class Symbol(object):
@@ -137,7 +136,7 @@ class parse(object):
         ## Does magic to allow PLY to do its thing.-
         self = super(parse, cls).__new__(cls, **kwargs)
         self.__init__(tokens)
-        self.s = list(Lex(grammar))
+        self.s = list(lx.Lex(grammar))
         i, r = self.Start(0)
         return r
 

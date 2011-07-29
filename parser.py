@@ -5,10 +5,10 @@
 #For licensing see the LICENSE file in the top level directory.
 
 import functools, types
-import analysis, tdpp
-from rec_parser import parse as gram_parse
+import analysis
+from gram_parser import parse as gram_parse
+from gram_parser import EmptyString, EoS, Terminal, NonTerminal
 from analysis import first, follow, build_table
-from rec_parser import EmptyString, EoS, Terminal, NonTerminal
 
 class BaseParser(object):
 

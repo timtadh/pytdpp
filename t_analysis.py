@@ -11,65 +11,10 @@ import functools, nose
 from ply import lex
 from ply.lex import Token
 
-reserved = dict(
-    (word.lower(), word) for word in (
-        'NUMBER',
-    )
-)
-
-tokens = reserved.values() + [
-    'SLASH', 'DASH',
+tokens = [
+    'NUMBER', 'SLASH', 'DASH',
     'STAR', 'PLUS', 'LPAREN', 'RPAREN'
 ]
-
-# Common Regex Parts
-
-D = r'[0-9]'
-L = r'[a-zA-Z_]'
-H = r'[a-fA-F0-9]'
-E = r'[Ee][+-]?(' + D + ')+'
-
-
-## Normally PLY works at the module level. I perfer having it encapsulated as
-## a class. Thus the strange construction of this class in the new method allows
-## PLY to do its magic.
-class Lexer(object):
-
-    def __new__(cls, **kwargs):
-        self = super(Lexer, cls).__new__(cls, **kwargs)
-        self.lexer = lex.lex(object=self, **kwargs)
-        return self.lexer
-
-    tokens = tokens
-
-    t_LPAREN = r'\('
-    t_RPAREN = r'\)'
-    t_SLASH = r'\/'
-    t_STAR = r'\*'
-    t_DASH = r'\-'
-    t_PLUS = r'\+'
-
-
-    const_hex = '0[xX](' + H + ')+'
-    @Token(const_hex)
-    def t_CONST_HEX(self, token):
-        token.type = 'NUMBER'
-        token.value = int(token.value, 16)
-        return token
-
-    const_dec_oct = '(' + D + ')+'
-    @Token(const_dec_oct)
-    def t_CONST_DEC_OCT(self, token):
-        token.type = 'NUMBER'
-        if (len(token.value) > 1 and token.value[0] == '0'
-            or (token.value[0] == '-' and token.value[1] == '0')):
-            token.value = int(token.value, 8)
-        else:
-            token.value = int(token.value, 10)
-        return token
-
-    def t_error(self, t):
-        raise Exception, t
 
 grammar = '''
     Expr : Term Expr';

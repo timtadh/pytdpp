@@ -23,7 +23,7 @@ class token(object):
         self.type = type
         self.value = value
     def __repr__(self):
-        return str(self.value)
+        return TOKENSR[self.type] + '=' + str(self.value)
     def __eq__(self, b):
         if b is None: return False
         if not isinstance(b, token): return False
